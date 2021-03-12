@@ -3,6 +3,7 @@ import Content from "./components/Content/Content";
 import Home from "./components/Home/Home";
 import Movies from "./components/Movies/Movies";
 import Series from "./components/Series/Series";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route exact path="/content/:id">
           <Content />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </Router>

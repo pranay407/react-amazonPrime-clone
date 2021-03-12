@@ -1,0 +1,15 @@
+@import "../../styles/global";
+
+.error {
+  background-color: $back-color;
+  height: 100vh;
+  position: relative;
+}
+.error-msg {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  span {
+    font-size: 8rem;
+  }
+}
