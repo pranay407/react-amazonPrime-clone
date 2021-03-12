@@ -1,0 +1,33 @@
+.row {
+  padding-top: 10px;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+}
+.title {
+  text-transform: uppercase;
+  margin-left: 2%;
+}
+.cards::-webkit-scrollbar {
+  display: none;
+}
+.card {
+  object-fit: contain;
+  width: 100%;
+  max-height: 200px;
+  margin-right: 1%;
+  transition: transform 450ms;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.08);
+}
+
+.large-card {
+  max-height: 400px;
+}

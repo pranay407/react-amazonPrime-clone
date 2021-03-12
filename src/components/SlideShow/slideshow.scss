@@ -1,0 +1,27 @@
+@import "../../styles/global";
+
+header {
+  background-color: $back-color;
+}
+
+.banner {
+  position: relative;
+  object-fit: contain;
+  height: 90vh;
+}
+.banner-contents {
+  position: absolute;
+  max-width: 30%;
+  left: 5%;
+  top: 33.33%;
+
+  h1 {
+    font-weight: bolder;
+    margin-bottom: 3%;
+  }
+  .banner-desc {
+    font-size: 20px;
+    color: whitesmoke;
+    line-height: 1.5;
+  }
+}
