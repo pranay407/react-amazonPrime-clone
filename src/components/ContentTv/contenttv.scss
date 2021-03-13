@@ -1,39 +1,44 @@
 @import "../../styles/global";
 
-.contentM {
+// .bannerTv {
+//   //   display: flex;
+//   //   flex-direction: row;
+// }
+
+.contentTv {
   background-color: $back-color;
   height: 440px;
   padding-top: 4%;
   z-index: 2;
 }
-.banner-imgM {
+.banner-imgTv {
   z-index: 0;
   height: 510px;
   overflow: hidden;
   padding: 0;
 }
-.img1M,
-.banner-imgM {
+.img1,
+.banner-imgTv {
   position: absolute;
   right: 0;
   top: 0;
   width: 950px;
 }
 
-.imgM {
+.img {
   width: 950px;
   position: absolute;
   right: 0;
   object-fit: contain;
   z-index: -1;
-  top: 9px;
+  top: 70px;
 }
 
-.img1M {
+.img1 {
   height: 510px;
   background: linear-gradient(90deg, #0f171e 10%, rgba(15, 23, 30, 0));
 }
-.img2M {
+.img2 {
   position: absolute;
   top: 0;
   width: 950px;
@@ -41,37 +46,81 @@
   right: 0;
   background: linear-gradient(0deg, #0f171e, rgba(15, 23, 30, 0) 50%);
 }
-.titleM,
-.descM,
-.infoM,
-.btnsM {
+.titleTv,
+.descTv,
+.infoTv,
+.btns,
+.season-btn {
   position: absolute;
   z-index: 2;
   max-width: 65%;
   margin-left: 3%;
 }
 
-.titleM {
+.titleTv {
   font-weight: 800;
   font-size: 30px;
   padding-bottom: 10px;
   margin-bottom: 4%;
 }
-.descM {
+.descTv {
   font-size: 18px;
   line-height: 1.5;
   margin-top: 4%;
 }
-.infoM {
+.infoTv {
   font-size: 17px;
   margin-top: 18%;
 }
 
-.btnsM {
+.btns {
   margin-top: 18%;
   margin-left: 18%;
   width: 100%;
   Button {
     margin-right: 2%;
   }
+}
+.season-btn {
+  margin-top: 22%;
+  margin-left: 18%;
+  width: 100%;
+}
+
+.content-body {
+  background-color: $back-color;
+  //   height: 200px;
+}
+
+.formControl {
+  width: 200px;
+
+  Input {
+    color: whitesmoke;
+  }
+}
+.episode {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+}
+
+.episodes {
+  margin-left: 3%;
+  padding-top: 50px;
+
+  h2 {
+    margin-bottom: 2%;
+  }
+}
+
+.epi-img {
+  flex-basis: 20%;
+  img {
+    width: 100%;
+  }
+}
+.epi-desc {
+  flex-basis: 80%;
+  margin-left: 3%;
 }

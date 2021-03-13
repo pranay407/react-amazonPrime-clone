@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import SlideShow from "../SlideShow/SlideShow";
 import Row from "../Row/Row";
 import request from "../../request";
+import RowTv from "../RowTv/RowTv";
 
 function Home() {
   return (
@@ -46,12 +47,12 @@ function Home() {
         </div>
         <div>
           <div>
-            <Row title="Trending Tv Shows" fetchUrl={request.trendingTv} />
+            <RowTv title="Trending Tv Shows" fetchUrl={request.trendingTv} />
           </div>
         </div>
         <div>
           <div>
-            <Row title="Top Rated Tv Shows" fetchUrl={request.topRatedTv} />
+            <RowTv title="Top Rated Tv Shows" fetchUrl={request.topRatedTv} />
           </div>
         </div>
       </div>

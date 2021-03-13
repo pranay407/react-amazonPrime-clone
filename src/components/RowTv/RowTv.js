@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../axios";
-import "./row.scss";
+import "./rowtv.scss";
 import { useHistory } from "react-router-dom";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
-function Row({ title, fetchUrl, isLargeRow }) {
+function RowTv({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
   const history = useHistory();
 
@@ -38,7 +38,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
                       }`}
                       alt={movie.title}
                       onClick={() => {
-                        history.push(`/content/${movie.id}`);
+                        history.push(`/contentTv/${movie.id}`);
                       }}
                     ></img>
                   </>
@@ -51,4 +51,4 @@ function Row({ title, fetchUrl, isLargeRow }) {
   );
 }
 
-export default Row;
+export default RowTv;

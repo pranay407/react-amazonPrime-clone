@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import AddIcon from "@material-ui/icons/Add";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import "./content.scss";
 
 import axios from "../../axios";
@@ -21,15 +25,52 @@ function Content() {
       return result;
     }
     fetchdata();
-  }, [id.id]);
+  }, [id1]);
   console.log(movies.backdrop_path);
   return (
     <div>
       <div>
         <Header />
       </div>
-      <div>
-        <img src={`${base_url}${movies.backdrop_path}`} />
+
+      <div className="bannerM">
+        <div className="contentM">
+          <div className="titleM">
+            {movies.original_title || movies.original_name}
+          </div>
+          <div className="descM">{movies.overview}</div>
+
+          <div className="infoM">
+            <div className="ratingM">IMBD:{movies.vote_average}</div>
+            <div className="RunTimeM">
+              Runtime: {movies.runtime || movies.episode_run_time} Min
+            </div>
+            <div className="DateM">
+              Release Date: {movies.release_date || movies.first_air_date}
+            </div>
+          </div>
+
+          <div className="btnsM">
+            <Button variant="contained">
+              <PlayArrowIcon /> Watch Trailer
+            </Button>
+            <Button variant="contained">
+              <AddIcon /> Add To Watchlist
+            </Button>
+            <Button variant="contained">
+              <GetAppIcon /> Download
+            </Button>
+          </div>
+        </div>
+        <div className="banner-imgM">
+          <img
+            alt=""
+            className="imgM"
+            src={`${base_url}${movies.backdrop_path || movies.poster_path}`}
+          ></img>
+        </div>
+        <div className="img1M"></div>
+        <div className="img2M"></div>
       </div>
     </div>
   );
