@@ -13,6 +13,9 @@ import "./contenttv.scss";
 
 import axios from "../../axios";
 import Header from "../Header/Header";
+
+import YouTube from "react-youtube";
+import movieTrailer from "movie-trailer";
 const base_url = "https://image.tmdb.org/t/p/original/";
 
 function ContentTv() {
@@ -20,6 +23,7 @@ function ContentTv() {
   const [episode, setEpisode] = useState([]);
   const [seasonNo, setSeasonNo] = useState([]);
   const [season, setSeason] = useState(1);
+  const [trailerUrl, setTrailerUrl] = useState("");
   const id = useParams();
   const id1 = id.id;
 
@@ -54,6 +58,28 @@ function ContentTv() {
   };
   console.log(season);
 
+  const opts = {
+    height: "390",
+    width: "100%",
+    playerVars: { autoPlay: 1 },
+  };
+
+  const handleClick = (Tvs) => {
+    console.log("click");
+    if (trailerUrl) {
+      setTrailerUrl("");
+    } else {
+      movieTrailer(Tvs?.name || Tvs?.original_name || "")
+        .then((url) => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+          setTrailerUrl(urlParams.get("v"));
+        })
+        .catch((error) => console.log(error.message));
+    }
+  };
+
+  console.log(Tvs);
+
   return (
     <div>
       <div>
@@ -77,7 +103,7 @@ function ContentTv() {
           </div>
 
           <div className="btns">
-            <Button variant="contained">
+            <Button onClick={() => handleClick(Tvs)} variant="contained">
               <PlayArrowIcon /> Watch Trailer
             </Button>
             <Button variant="contained">
@@ -110,7 +136,11 @@ function ContentTv() {
                 onChange={handleChange}
               >
                 {seasonNo.map((no) => {
-                  return <MenuItem value={no}>Season{no}</MenuItem>;
+                  return (
+                    <MenuItem key={no} value={no}>
+                      Season{no}
+                    </MenuItem>
+                  );
                 })}
               </Select>
             </FormControl>
@@ -126,7 +156,7 @@ function ContentTv() {
         <div className="img1"></div>
         <div className="img2"></div>
       </div>
-
+      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
       <div className="content-body">
         <div className="episodes">
           <h2>Episodes</h2>

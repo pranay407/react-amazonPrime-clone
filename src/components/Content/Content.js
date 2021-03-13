@@ -5,12 +5,16 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import AddIcon from "@material-ui/icons/Add";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import "./content.scss";
-
 import axios from "../../axios";
 import Header from "../Header/Header";
+import YouTube from "react-youtube";
+import movieTrailer from "movie-trailer";
+
 const base_url = "https://image.tmdb.org/t/p/original/";
 function Content() {
   const [movies, setMovies] = useState([]);
+  const [trailerUrl, setTrailerUrl] = useState("");
+
   const id = useParams();
   const id1 = id.id;
 
@@ -21,12 +25,34 @@ function Content() {
       );
       const result = res.data;
       setMovies(result);
-      console.log(result);
+      // console.log(result);
       return result;
     }
     fetchdata();
   }, [id1]);
-  console.log(movies.backdrop_path);
+
+  const opts = {
+    height: "390",
+    width: "100%",
+    playerVars: { autoPlay: 1 },
+  };
+
+  const handleClick = (movies) => {
+    console.log("click");
+    if (trailerUrl) {
+      setTrailerUrl("");
+    } else {
+      movieTrailer(movies?.title || movies?.original_title || "")
+        .then((url) => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+          setTrailerUrl(urlParams.get("v"));
+        })
+        .catch((error) => console.log(error.message));
+    }
+  };
+
+  console.log(movies);
+
   return (
     <div>
       <div>
@@ -51,7 +77,7 @@ function Content() {
           </div>
 
           <div className="btnsM">
-            <Button variant="contained">
+            <Button onClick={() => handleClick(movies)} variant="contained">
               <PlayArrowIcon /> Watch Trailer
             </Button>
             <Button variant="contained">
@@ -71,7 +97,10 @@ function Content() {
         </div>
         <div className="img1M"></div>
         <div className="img2M"></div>
+
+        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
       </div>
+      <div style={{ height: "500px", backgroundColor: "#0f171e" }}></div>
     </div>
   );
 }
